@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KKTC TÜFE Değişim Analizi</title>
+    <!-- flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
+    <!-- Ana CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <meta name="theme-color" content="#0052CC"/> <!-- Yeni Ana Renk -->
+    <meta name="description" content="KKTC Tüketici Fiyat Endeksi (TÜFE) ana harcama grupları değişim analizi uygulaması.">
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+             <img src="icons/icon-192x192.png" alt="İkon" class="app-icon"> <!-- İkon ekleyelim -->
+            <h1>KKTC TÜFE Değişim Analizi</h1>
+        </header>
+
+        <div class="controls">
+            <div class="date-picker">
+                <label for="startDate">Başlangıç Tarihi:</label>
+                <!-- Type="text" olarak değiştirildi -->
+                <input type="text" id="startDate" name="startDate" placeholder="Yıl-Ay Seçin" readonly>
+            </div>
+            <div class="date-picker">
+                <label for="endDate">Bitiş Tarihi:</label>
+                 <!-- Type="text" olarak değiştirildi -->
+                <input type="text" id="endDate" name="endDate" placeholder="Yıl-Ay Seçin" readonly>
+            </div>
+            <button id="calculateButton" disabled>Değişimi Hesapla</button>
+        </div>
+
+         <p id="dateInfoText" class="date-info"></p> <!-- Bilgi metni için yer -->
+
+        <div id="results" class="results-container" style="display: none;">
+             <h2 id="resultsTitle">Seçilen Dönem Arası Değişim Oranları (%)</h2>
+            <div id="mainIndexResult" class="main-index">
+                <!-- Ana Endeks sonucu buraya gelecek -->
+            </div>
+             <h3>Detaylı Değişim Oranları:</h3>
+            <div id="categoryResults" class="category-results">
+                <!-- Diğer kategori sonuçları buraya gelecek -->
+            </div>
+             <h3>Değişim Oranı Grafiği:</h3>
+            <div class="chart-container">
+                <canvas id="tufeChart"></canvas>
+            </div>
+        </div>
+
+         <div id="loadingMessage" class="loading-message" style="display: none;">
+             <!-- Yükleniyor animasyonu veya mesajı -->
+             <div class="spinner"></div>
+             <span>Veriler yükleniyor ve işleniyor...</span>
+        </div>
+
+        <div id="errorMessage" class="error-message" style="display: none;">
+             <!-- Hata mesajları buraya gelecek -->
+        </div>
+    </div>
+
+    <!-- Kütüphaneler -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <!-- flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+    <!-- Ana Script -->
+    <script src="script.js"></script>
+</body>
+</html>
